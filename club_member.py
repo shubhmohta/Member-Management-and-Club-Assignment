@@ -30,6 +30,7 @@ class ClubMember:
 class ClubManager(ClubMember):
 
     def add_assignment(self, title: str, max_score: int, deadline: datetime) -> 'Assignment':
+        from assignment import Assignment
         assignment = Assignment(title, max_score, deadline, self.club, self)
         self.club.add_assignment(assignment)
         return assignment
