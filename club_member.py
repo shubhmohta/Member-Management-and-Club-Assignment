@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 from database import Database
-
+from vector import Vector
 if TYPE_CHECKING:
     from assignment import Assignment
     from club import Club
@@ -15,7 +15,6 @@ db = Database()
 # Manager capabilities minus the add assignments
 class ClubMember:
     def __init__(self, student: 'Student', club: 'Club'):
-        from vector import Vector
         self.student = student
         self.club = club
         self.joined_date = datetime.now()
