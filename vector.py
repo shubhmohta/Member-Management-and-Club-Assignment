@@ -1,10 +1,10 @@
 
 import ctypes
-from typing import Iterable, Optional, TypeVar, Iterator
+from typing import Iterable, Optional, TypeVar, Iterator, Generic
 
 T = TypeVar('T')
 
-class Vector:
+class Vector(Generic[T]):
     def __init__(self, iterable: Optional[Iterable[T]] = None):
         self._n = 0            
         self._capacity = 1     
