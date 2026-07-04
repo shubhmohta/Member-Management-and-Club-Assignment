@@ -72,13 +72,13 @@ def handle_login():
 
     enrollment = typer.prompt("Enrollment number").strip()
     password = typer.prompt("🔒 Password", hide_input=True)
+    try:
+        student = session.login(enrollment, password)
 
-    student = session.login(enrollment, password)
-
-    if student:
-        typer.secho(f"\n🎉 Welcome back {student.name}!", fg=typer.colors.GREEN, bold=True)
-        show_dashboard()
-    else:
+        if student:
+            typer.secho(f"\n🎉 Welcome back {student.name}!", fg=typer.colors.GREEN, bold=True)
+            show_dashboard()
+    except BadFormatException as e:
         typer.secho("\n❌ Login failed! Invalid enrollment or password.", fg=typer.colors.RED, bold=True)
 
 
@@ -234,7 +234,7 @@ def show_club_menu(club):
                 elif sub_choice == "Back" or sub_choice is None:
                     break
 
-        elif choice == "View My Submissions":
+        elif choice == "View Submissions":
             submissions = []
 
             member = club.get_member(session.get_current_user())
